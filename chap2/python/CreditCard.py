@@ -40,6 +40,10 @@ class CreditCard:
         return self._balance
 
     # mutators
+    # C-2.30
+    def _set_balance(self, bal_diff):
+        self._balance += bal_diff
+
     def charge(self, price):
         """Charge given price to the cardm assuming sufficient credit limit.
         
@@ -49,12 +53,12 @@ class CreditCard:
         if price + self._balance > self._limit:
             return False
         else:
-            self._balance += price
+            self._set_balance(price)
             return True
         
     def make_payment(self, amount):
         """Process customer payment that reduces balance."""
-        self._balance -= amount
+        self._set_balance(-amount)
 
 
 
